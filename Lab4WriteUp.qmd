@@ -266,7 +266,7 @@ Now, we want to obtain all of the enumerated items. Find the element type the in
 
 **Solution**
 ```{r}
-(instructions=html_elements(instruction.section, "ol"))
+(instructions=html_elements(instruction.section, "li"))
 ```
 
 ## Part g
