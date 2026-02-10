@@ -148,17 +148,24 @@ Create a sequence from 1 to 10 by 2 and use it to print the odd rows of the data
 
 ```{r}
 (sequence <- seq(from=1, to=10, by=2))
+(df[sequence,])
 ```
 
 ## Part h
 Below, I create an empty column called `x12`. Fill in the details of the `for(...)` loop to ensure `x12` is the product of `x1` and `x2`.
+
+**Solution**
 ```{r}
 #| size: "scriptsize"
 n <- nrow(df)                # How many rows to we have to fill?
 df$x12 <- rep(NA, nrow(df))   # Create an empty column for x12
+
 for(i in 1:nrow(df)){
-  # REPLACE WITH THE NECESSARY CODE
+  x1 = df[i,]$x1
+  x2 = df[i,]$x2
+  df$x12[i] = (x1*x2)
 }
+(df$x12)
 ```
 
 ## Part i
@@ -166,8 +173,39 @@ Write a function called `calculate.score(...)` that takes three arguments repres
 $$Score = (x_1 \times 2) + x_2 - x_3$$
 Use your function to create a new column `total.score` in our data frame `df`.
 
+**Solution**
+```{r}
+score = function(x1,x2,x3) {
+  (x1*2)+x2-x3
+}
+df$total.score <- rep(NA, nrow(df))
+  for(i in 1:nrow(df)){
+  x1 = df[i,]$x1
+  x2 = df[i,]$x2
+  x3 = df[i,]$x3
+  df$total.score[i] = score(x1,x2,x3)
+}
+(df$total.score)
+```
+
 ## Part j
 Create a function called `evaluate.row(...)` that takes one argument and returns "low" when the argument is less than 4, "mid" when the argument is between 4 and 7 (inclusive), and "high" when the arguement is 8 or larger. Then, use `sapply(...)` to apply it to column `x1`.
+
+**Solution**
+```{r}
+evaluate.row = function(x){
+  if(x<4) {
+    return("low")
+  }
+  if(x>=4 & x<=7) {
+    return("mid")
+  }
+  if(x>=8) {
+    return("high")
+  }
+}
+(sapply(df$x1, evaluate.row))
+```
 
 ## Part k
 Did we need to use loops or functions in (h.)-(j.)? That is, can we use vectorization to attain the same results in 1 line each? Where it is possible, write the line of code. Where it is not, explain why.
