@@ -606,15 +606,36 @@ window.Quarto = {
 <h2 data-number="4.2" class="anchored" data-anchor-id="conditionals"><span class="header-section-number">4.2</span> Conditionals</h2>
 <p>Did you use conditional statements in your code? If yes, how. If not, are there places you could have used them but did something else?</p>
 <p><strong>Solution</strong></p>
-<p>I didn’t use conditional statements in my code.</p>
+<p>I didn’t use conditional statements in my code. I don’t think there are places where I could have used them, unless some websites were missing some elements (e.g., missing title or the image) and in that case maybe it’s helpful to give a warning.</p>
 </section>
 <section id="loops" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="loops"><span class="header-section-number">4.3</span> Loops</h2>
 <p>Did you use loops in your code? If yes, how. If not, are there places you could have used them but did something else?</p>
+<p><strong>Solution</strong></p>
+<p>I used loops in my code to pull the ingredients, instructions and image URLs for all 4 recipes then store them in 3 lists, instead of doing one recipe at a time. This was really helpful for the task in which I have to print all of the ingredient items. I could also make use of the lists storing the data from the loop to simplify my codes to pull image, ingredients, and instructions for each selected recipe.</p>
 </section>
 <section id="functions" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="functions"><span class="header-section-number">4.4</span> Functions</h2>
 <p>Did you use functions in your code? If yes, how. If not, are there places you could have used them but did something else?</p>
+<p><strong>Solution</strong></p>
+<p>I could have used a function to produce a list of all elements required for each recipe. It may look something like this:</p>
+<p></p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>link<span class="ot">=</span><span class="fu">as.character</span>(df<span class="sc">$</span>recipe.link)</span>
+<span id="cb38-2"><a href="#cb38-2"></a><span class="co"># paste `link` to obtain all the website addresses that were sampled. then input each of those into the function.</span></span>
+<span id="cb38-3"><a href="#cb38-3"></a>recipe.info <span class="ot">&lt;-</span> <span class="cf">function</span>(link){ </span>
+<span id="cb38-4"><a href="#cb38-4"></a>  recipe.item <span class="ot">&lt;-</span> <span class="fu">read_html</span>(link)</span>
+<span id="cb38-5"><a href="#cb38-5"></a>  ingredient.items<span class="ot">=</span><span class="fu">html_elements</span>(<span class="fu">html_element</span>(recipe.item, <span class="st">"#ingredients"</span>), <span class="st">"li"</span>)</span>
+<span id="cb38-6"><a href="#cb38-6"></a>  instructions<span class="ot">=</span><span class="fu">html_elements</span>(<span class="fu">html_elements</span>(recipe.item, <span class="st">"#instructions"</span>), <span class="st">"li"</span>)</span>
+<span id="cb38-7"><a href="#cb38-7"></a>  image.url<span class="ot">=</span><span class="fu">paste</span>(<span class="st">"website/"</span>,<span class="fu">html_attr</span>(<span class="fu">html_element</span>(recipe.item, <span class="st">".figure-img"</span>), <span class="st">"src"</span>), <span class="at">sep=</span><span class="st">""</span>)</span>
+<span id="cb38-8"><a href="#cb38-8"></a>  <span class="fu">return</span>(<span class="fu">list</span>(ingredient.items,instructions,image.url))</span>
+<span id="cb38-9"><a href="#cb38-9"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p></p>
+<p>Then for the list of all ingredients, I can combine the <code>ingredient.items</code> element of each list generated for each recipe.</p>
 
 </section>
 </section>

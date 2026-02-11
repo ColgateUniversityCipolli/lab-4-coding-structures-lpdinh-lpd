@@ -360,3 +360,20 @@ I used loops in my code to pull the ingredients, instructions and image URLs for
 ## Functions
 Did you use functions in your code? If yes, how. If not, are there places you could have used them but did something else?
 
+**Solution**
+
+I could have used a function to produce a list of all elements required for each recipe. It may look something like this:
+
+```{r}
+link=as.character(df$recipe.link)
+# paste `link` to obtain all the website addresses that were sampled. then input each of those into the function.
+recipe.info <- function(link){ 
+  recipe.item <- read_html(link)
+  ingredient.items=html_elements(html_element(recipe.item, "#ingredients"), "li")
+  instructions=html_elements(html_elements(recipe.item, "#instructions"), "li")
+  image.url=paste("website/",html_attr(html_element(recipe.item, ".figure-img"), "src"), sep="")
+  return(list(ingredient.items,instructions,image.url))
+}
+```
+
+Then for the list of all ingredients, I can combine the `ingredient.items` element of each list generated for each recipe.

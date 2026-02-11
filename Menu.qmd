@@ -107,19 +107,6 @@ for(i in 1:nrow(df)){
 }
 ```
 
-```{r}
-the.link=df$recipe.link
-recipe.info <- function(the.link){ 
-  recipe.item <- read_html(df$recipe.link)
-  ingredient.items=html_elements(html_element(recipe.item, "#ingredients"), "li")
-  instructions=html_elements(html_elements(recipe.item, "#instructions"), "li")
-  image.element=html_element(recipe.item, ".figure-img")
-  image.url=paste("website/",html_attr(image.element, "src"), sep="")
-  return(list(ingredient.items,instructions,image.url))
-}
-```
-
-
 # Ingredients
 ```{r}
 #| echo: false
