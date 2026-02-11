@@ -124,11 +124,13 @@ for(i in 1:length(all.ingredients)){
 \newpage
 
 # Recipe One
+
 ```{r}
 #| echo: false
 #| results: 'asis'
 # width="50%" shrinks the image for printing
-cat(paste('<img src="',images.url[[2]], '" style="width: 50%; height: auto;">'))
+title.1=html_element(read_html(df$recipe.link[2]), "h1") |> html_text()
+cat(paste('![', title.1, '](', images.url[[2]], "){width=50%}"))
 ```
 
 ## Ingredients
@@ -149,6 +151,13 @@ cat(formatted_list, sep = "\n")
 \newpage
 
 # Recipe Two
+```{r}
+#| echo: false
+#| results: 'asis'
+# width="50%" shrinks the image for printing
+title.1=html_element(read_html(df$recipe.link[3]), "h1") |> html_text()
+cat(paste('![', title.1, '](', images.url[[3]], "){width=50%}"))
+```
 
 ```{r}
 #| echo: false
@@ -180,6 +189,13 @@ cat(formatted_list, sep = "\n")
 #| echo: false
 #| results: 'asis'
 # width="50%" shrinks the image for printing
+title.1=html_element(read_html(df$recipe.link[4]), "h1") |> html_text()
+cat(paste('![', title.1, '](', images.url[[4]], "){width=50%}"))
+```
+```{r}
+#| echo: false
+#| results: 'asis'
+# width="50%" shrinks the image for printing
 cat(paste('<img src="',images.url[[4]], '" style="width: 50%; height: auto;">'))
 ```
 ```{r}
@@ -200,6 +216,13 @@ cat(formatted_list, sep = "\n")
 \newpage
 
 # Breakfast Recipe
+```{r}
+#| echo: false
+#| results: 'asis'
+# width="50%" shrinks the image for printing
+title.1=html_element(read_html(df$recipe.link[1]), "h1") |> html_text()
+cat(paste('![', title.1, '](', images.url[[1]], "){width=50%}"))
+```
 ## Ingredients
 ```{r}
 #| echo: false
