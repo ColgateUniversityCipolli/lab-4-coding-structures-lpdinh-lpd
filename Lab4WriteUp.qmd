@@ -285,7 +285,7 @@ Find the class of the recipe image and pull the HTML using `html_element(...)` a
 
 **Solution**
 ```{r}
-image.element = html_element(recipe.item, ".figure-img")
+image.element=html_element(recipe.item, ".figure-img")
 ```
 
 ## Part h
@@ -294,7 +294,7 @@ Use the `html_attr(...)` function to pull the source link ("src"). Then, use `pa
 
 **Solution**
 ```{r}
-image.url=paste("https://www.website.com",html_attr(image.element, "src"), sep="")
+image.url=paste("website/",html_attr(image.element, "src"), sep="")
 ```
 
 ## Part i
@@ -345,6 +345,10 @@ Read [https://www.scrapingbee.com/blog/is-web-scraping-legal/](Is Web Sraping Le
 
 ## Conditionals
 Did you use conditional statements in your code? If yes, how. If not, are there places you could have used them but did something else?
+
+**Solution**
+
+I didn't use conditional statements in my code.
 
 ## Loops
 Did you use loops in your code? If yes, how. If not, are there places you could have used them but did something else?

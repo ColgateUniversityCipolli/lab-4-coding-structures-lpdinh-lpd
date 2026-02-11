@@ -90,7 +90,7 @@ chosen.recipes = c(sample.bf, sample.dinner)
 df=data.frame(recipe.link=chosen.recipes)
 all.ingredients=list()
 all.instructions=list()
-all.images=list()
+images.url=list()
 
 for(i in 1:nrow(df)){
   recipe.item <- read_html(df$recipe.link[i])
@@ -102,7 +102,8 @@ for(i in 1:nrow(df)){
   instruction.section=html_elements(recipe.item, "#instructions")
   all.instructions[[i]]=html_elements(instruction.section, "li")
   # get image
-  all.images[[i]]=html_element(recipe.item, ".figure-img")
+  image.element=html_element(recipe.item, ".figure-img")
+  images.url[[i]]=paste("website/",html_attr(image.element, "src"), sep="")
 }
 ```
 
@@ -123,32 +124,94 @@ for(i in 1:length(all.ingredients)){
 \newpage
 
 # Recipe One
+```{r}
+#| echo: false
+#| results: 'asis'
+# width="50%" shrinks the image for printing
+cat(paste('<img src="',images.url[[2]], '" style="width: 50%; height: auto;">'))
+```
 
+## Ingredients
+```{r}
+#| echo: false
+#| results: 'asis'
+formatted_list <- paste("-", html_text(all.ingredients[[2]]))
+cat(formatted_list, sep = "\n")
+```
+
+## Instructions
+```{r}
+#| echo: false
+#| results: 'asis'
+formatted_list <- paste("1.", html_text(all.instructions[[2]]))
+cat(formatted_list, sep = "\n")
+```
 \newpage
 
 # Recipe Two
 
+```{r}
+#| echo: false
+#| results: 'asis'
+# width="50%" shrinks the image for printing
+cat(paste('<img src="',images.url[[3]], '" style="width: 50%; height: auto;">'))
+```
+
+## Ingredients
+```{r}
+#| echo: false
+#| results: 'asis'
+formatted_list <- paste("-", html_text(all.ingredients[[3]]))
+cat(formatted_list, sep = "\n")
+```
+
+## Instructions
+```{r}
+#| echo: false
+#| results: 'asis'
+formatted_list <- paste("1.", html_text(all.instructions[[3]]))
+cat(formatted_list, sep = "\n")
+```
+
 \newpage
 
 # Recipe Three
+```{r}
+#| echo: false
+#| results: 'asis'
+# width="50%" shrinks the image for printing
+cat(paste('<img src="',images.url[[4]], '" style="width: 50%; height: auto;">'))
+```
+```{r}
+#| echo: false
+#| results: 'asis'
+formatted_list <- paste("-", html_text(all.ingredients[[4]]))
+cat(formatted_list, sep = "\n")
+```
+
+## Instructions
+```{r}
+#| echo: false
+#| results: 'asis'
+formatted_list <- paste("1.", html_text(all.instructions[[4]]))
+cat(formatted_list, sep = "\n")
+```
 
 \newpage
 
 # Breakfast Recipe
-
-```{r}
-#| include: false
-recipe.item <- read_html(df$recipe.link[1])
-ingredients.section=html_element(recipe.item, "#ingredients")
-bf.ingredients=html_elements(ingredients.section, "li")
-instruction.section=html_elements(recipe.item, "#instructions")
-bf.instructions=html_elements(instruction.section, "li")
-bf.image=html_element(recipe.item, ".figure-img")
-```
-
+## Ingredients
 ```{r}
 #| echo: false
 #| results: 'asis'
-formatted_list <- paste("-", html_text(bf.ingredients))
+formatted_list <- paste("-", html_text(all.ingredients[[1]]))
+cat(formatted_list, sep = "\n")
+```
+
+## Instructions
+```{r}
+#| echo: false
+#| results: 'asis'
+formatted_list <- paste("1.", html_text(all.instructions[[1]]))
 cat(formatted_list, sep = "\n")
 ```
