@@ -348,10 +348,14 @@ Did you use conditional statements in your code? If yes, how. If not, are there 
 
 **Solution**
 
-I didn't use conditional statements in my code.
+I didn't use conditional statements in my code. I don't think there are places where I could have used them, unless some websites were missing some elements (e.g., missing title or the image) and in that case maybe it's helpful to give a warning.
 
 ## Loops
 Did you use loops in your code? If yes, how. If not, are there places you could have used them but did something else?
+
+**Solution**
+
+I used loops in my code to pull the ingredients, instructions and image URLs for all 4 recipes then store them in 3 lists, instead of doing one recipe at a time. This was really helpful for the task in which I have to print all of the ingredient items. I could also make use of the lists storing the data from the loop to simplify my codes to pull image, ingredients, and instructions for each selected recipe.
 
 ## Functions
 Did you use functions in your code? If yes, how. If not, are there places you could have used them but did something else?

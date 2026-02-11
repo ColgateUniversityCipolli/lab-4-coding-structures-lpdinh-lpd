@@ -101,11 +101,24 @@ for(i in 1:nrow(df)){
   # get instructions
   instruction.section=html_elements(recipe.item, "#instructions")
   all.instructions[[i]]=html_elements(instruction.section, "li")
-  # get image
+  # get image url
   image.element=html_element(recipe.item, ".figure-img")
   images.url[[i]]=paste("website/",html_attr(image.element, "src"), sep="")
 }
 ```
+
+```{r}
+the.link=df$recipe.link
+recipe.info <- function(the.link){ 
+  recipe.item <- read_html(df$recipe.link)
+  ingredient.items=html_elements(html_element(recipe.item, "#ingredients"), "li")
+  instructions=html_elements(html_elements(recipe.item, "#instructions"), "li")
+  image.element=html_element(recipe.item, ".figure-img")
+  image.url=paste("website/",html_attr(image.element, "src"), sep="")
+  return(list(ingredient.items,instructions,image.url))
+}
+```
+
 
 # Ingredients
 ```{r}
@@ -198,6 +211,8 @@ cat(paste('![', title.1, '](', images.url[[4]], "){width=50%}"))
 # width="50%" shrinks the image for printing
 cat(paste('<img src="',images.url[[4]], '" style="width: 50%; height: auto;">'))
 ```
+
+## Ingredients
 ```{r}
 #| echo: false
 #| results: 'asis'
@@ -223,6 +238,7 @@ cat(formatted_list, sep = "\n")
 title.1=html_element(read_html(df$recipe.link[1]), "h1") |> html_text()
 cat(paste('![', title.1, '](', images.url[[1]], "){width=50%}"))
 ```
+
 ## Ingredients
 ```{r}
 #| echo: false
