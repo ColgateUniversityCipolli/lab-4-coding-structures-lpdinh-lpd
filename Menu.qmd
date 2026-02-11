@@ -84,11 +84,10 @@ dinner <- c("website/AfricanPeanutSoup.html",
             "website/RedWineRagu.html",
             "website/SalmonChowder.html",
             "website/Shakshuka.html")
-sample(breakfasts, 1, replace=FALSE)
-sample(dinner, 3, replace=FALSE)
-chosen.recipes = c(sample(breakfasts, 1, replace=FALSE), sample(dinner, 3, replace=FALSE))
+sample.bf= sample(breakfasts, 1, replace=FALSE)
+sample.dinner =sample(dinner, 3, replace=FALSE)
+chosen.recipes = c(sample.bf, sample.dinner)
 df=data.frame(recipe.link=chosen.recipes)
-n=nrow(df)
 all.ingredients=list()
 all.instructions=list()
 all.images=list()
@@ -98,17 +97,29 @@ for(i in 1:nrow(df)){
   # get ingredient items
   ingredients.section=html_element(recipe.item, "#ingredients")
   # store it as the ith element in the list
-  all.ingredients[[i]]=ingredients=html_elements(ingredients.section, "li")
+  all.ingredients[[i]]=html_elements(ingredients.section, "li")
   # get instructions
   instruction.section=html_elements(recipe.item, "#instructions")
-  all.instructions[[i]]=instructions=html_elements(instruction.section, "ol")
+  all.instructions[[i]]=html_elements(instruction.section, "li")
   # get image
-  all.images[[i]]=image.element = html_element(recipe.item, ".figure-img")
+  all.images[[i]]=html_element(recipe.item, ".figure-img")
 }
 ```
 
 # Ingredients
-
+```{r}
+#| echo: false
+#| results: 'asis'
+# obtain the number length of the list
+# length(all.ingredients)
+for(i in 1:length(all.ingredients)){
+  #| echo: false
+  #| results: 'asis'
+  formatted_list <- paste("-", html_text(all.ingredients[[i]]))
+  # when use [i], the class is list. when use [[i]], the class is xml_nodeset which apparently worked. the code is to print the text of a singular html item (html_text).
+  cat(formatted_list, sep = "\n")
+}
+```
 \newpage
 
 # Recipe One
@@ -124,3 +135,20 @@ for(i in 1:nrow(df)){
 \newpage
 
 # Breakfast Recipe
+
+```{r}
+#| include: false
+recipe.item <- read_html(df$recipe.link[1])
+ingredients.section=html_element(recipe.item, "#ingredients")
+bf.ingredients=html_elements(ingredients.section, "li")
+instruction.section=html_elements(recipe.item, "#instructions")
+bf.instructions=html_elements(instruction.section, "li")
+bf.image=html_element(recipe.item, ".figure-img")
+```
+
+```{r}
+#| echo: false
+#| results: 'asis'
+formatted_list <- paste("-", html_text(bf.ingredients))
+cat(formatted_list, sep = "\n")
+```

@@ -294,7 +294,7 @@ Use the `html_attr(...)` function to pull the source link ("src"). Then, use `pa
 
 **Solution**
 ```{r}
-paste("https://www.website.com",html_attr(image.element, "src"), sep="")
+image.url=paste("https://www.website.com",html_attr(image.element, "src"), sep="")
 ```
 
 ## Part i
@@ -306,7 +306,7 @@ Now that we have all the things we need, let's try to print the recipe. Below, I
 #| echo: false
 #| results: 'asis'
 # width="50%" shrinks the image for printing
-cat(paste('<img src="', paste("https://www.website.com",html_attr(image.element, "src"), sep=""), '" style="width: 50%; height: auto;">'))
+cat(paste('<img src="', image.url, '" style="width: 50%; height: auto;">'))
 ```
 
 **Ingredients**
