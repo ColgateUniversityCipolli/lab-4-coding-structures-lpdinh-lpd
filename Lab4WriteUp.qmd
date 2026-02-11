@@ -210,6 +210,16 @@ evaluate.row = function(x){
 ## Part k
 Did we need to use loops or functions in (h.)-(j.)? That is, can we use vectorization to attain the same results in 1 line each? Where it is possible, write the line of code. Where it is not, explain why.
 
+**Solution**
+We can use vectorization for h and i.
+
+```{r}
+df$x12=(df$x1)*(df$x2)
+df$total.score=((df$x1)*2+df$x2-df$x3)
+```
+
+We can't use vectorization in part j because the block notation of `if()` function are not vectorized (it doesn't work simultaneously on all elements of a vector, but process each element at once to return TRUE/FALSE).
+
 # Complete Tasks for One Recipe
 
 ## Part a

@@ -45,6 +45,7 @@ knitr::knit_hooks$set(chunk = function(x, options) {
 #| label: load-packages
 #| include: false
 library(tidyverse)
+library(rvest)
 ```
 
 <!-- Code For Building Menu Here -->
@@ -86,6 +87,24 @@ dinner <- c("website/AfricanPeanutSoup.html",
 sample(breakfasts, 1, replace=FALSE)
 sample(dinner, 3, replace=FALSE)
 chosen.recipes = c(sample(breakfasts, 1, replace=FALSE), sample(dinner, 3, replace=FALSE))
+df=data.frame(recipe.link=chosen.recipes)
+n=nrow(df)
+all.ingredients=list()
+all.instructions=list()
+all.images=list()
+
+for(i in 1:nrow(df)){
+  recipe.item <- read_html(df$recipe.link[i])
+  # get ingredient items
+  ingredients.section=html_element(recipe.item, "#ingredients")
+  # store it as the ith element in the list
+  all.ingredients[[i]]=ingredients=html_elements(ingredients.section, "li")
+  # get instructions
+  instruction.section=html_elements(recipe.item, "#instructions")
+  all.instructions[[i]]=instructions=html_elements(instruction.section, "ol")
+  # get image
+  all.images[[i]]=image.element = html_element(recipe.item, ".figure-img")
+}
 ```
 
 # Ingredients
