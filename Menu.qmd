@@ -86,14 +86,6 @@ dinner <- c("website/AfricanPeanutSoup.html",
 sample(breakfasts, 1, replace=FALSE)
 sample(dinner, 3, replace=FALSE)
 chosen.recipes = c(sample(breakfasts, 1, replace=FALSE), sample(dinner, 3, replace=FALSE))
-for(i in chosen.recipes){
-  recipe.item <- read_html(i)
-  ingredients.section=html_element(recipe.item, "#ingredients")
-  ingredients=html_elements(ingredients.section, "li")
-  instruction.section=html_elements(recipe.item, "#instructions")
-  instructions=html_elements(instruction.section, "ol")
-  image.element = html_element(recipe.item, ".figure-img")
-}
 ```
 
 # Ingredients
