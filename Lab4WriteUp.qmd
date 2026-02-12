@@ -306,7 +306,8 @@ Now that we have all the things we need, let's try to print the recipe. Below, I
 #| echo: false
 #| results: 'asis'
 # width="50%" shrinks the image for printing
-cat(paste('<img src="', image.url, '" style="width: 50%; height: auto;">'))
+title.1=html_element(read_html("website/KimchiGrilledCheese.html"), "h1") |> html_text()
+cat(paste('![', title.1, '](', image.url, "){width=50%}"))
 ```
 
 **Ingredients**
