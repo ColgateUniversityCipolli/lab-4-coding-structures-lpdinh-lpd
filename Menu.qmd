@@ -159,13 +159,6 @@ title.1=html_element(read_html(df$recipe.link[3]), "h1") |> html_text()
 cat(paste('![', title.1, '](', images.url[[3]], "){width=50%}"))
 ```
 
-```{r}
-#| echo: false
-#| results: 'asis'
-# width="50%" shrinks the image for printing
-cat(paste('<img src="',images.url[[3]], '" style="width: 50%; height: auto;">'))
-```
-
 ## Ingredients
 ```{r}
 #| echo: false
@@ -191,12 +184,6 @@ cat(formatted_list, sep = "\n")
 # width="50%" shrinks the image for printing
 title.1=html_element(read_html(df$recipe.link[4]), "h1") |> html_text()
 cat(paste('![', title.1, '](', images.url[[4]], "){width=50%}"))
-```
-```{r}
-#| echo: false
-#| results: 'asis'
-# width="50%" shrinks the image for printing
-cat(paste('<img src="',images.url[[4]], '" style="width: 50%; height: auto;">'))
 ```
 
 ## Ingredients
