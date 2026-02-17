@@ -354,7 +354,7 @@ window.Quarto = {
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>score <span class="ot">=</span> <span class="cf">function</span>(x1,x2,x3) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>calculate.score <span class="ot">=</span> <span class="cf">function</span>(x1,x2,x3) {</span>
 <span id="cb21-2"><a href="#cb21-2"></a>  (x1<span class="sc">*</span><span class="dv">2</span>)<span class="sc">+</span>x2<span class="sc">-</span>x3</span>
 <span id="cb21-3"><a href="#cb21-3"></a>}</span>
 <span id="cb21-4"><a href="#cb21-4"></a>df<span class="sc">$</span>total.score <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">nrow</span>(df))</span>
@@ -362,7 +362,7 @@ window.Quarto = {
 <span id="cb21-6"><a href="#cb21-6"></a>  x1 <span class="ot">=</span> df[i,]<span class="sc">$</span>x1</span>
 <span id="cb21-7"><a href="#cb21-7"></a>  x2 <span class="ot">=</span> df[i,]<span class="sc">$</span>x2</span>
 <span id="cb21-8"><a href="#cb21-8"></a>  x3 <span class="ot">=</span> df[i,]<span class="sc">$</span>x3</span>
-<span id="cb21-9"><a href="#cb21-9"></a>  df<span class="sc">$</span>total.score[i] <span class="ot">=</span> <span class="fu">score</span>(x1,x2,x3)</span>
+<span id="cb21-9"><a href="#cb21-9"></a>  df<span class="sc">$</span>total.score[i] <span class="ot">=</span> <span class="fu">calculate.score</span>(x1,x2,x3)</span>
 <span id="cb21-10"><a href="#cb21-10"></a>}</span>
 <span id="cb21-11"><a href="#cb21-11"></a>(df<span class="sc">$</span>total.score)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>

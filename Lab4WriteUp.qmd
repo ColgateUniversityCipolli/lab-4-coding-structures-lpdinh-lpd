@@ -177,7 +177,7 @@ Use your function to create a new column `total.score` in our data frame `df`.
 
 **Solution**
 ```{r}
-score = function(x1,x2,x3) {
+calculate.score = function(x1,x2,x3) {
   (x1*2)+x2-x3
 }
 df$total.score <- rep(NA, nrow(df))
@@ -185,7 +185,7 @@ df$total.score <- rep(NA, nrow(df))
   x1 = df[i,]$x1
   x2 = df[i,]$x2
   x3 = df[i,]$x3
-  df$total.score[i] = score(x1,x2,x3)
+  df$total.score[i] = calculate.score(x1,x2,x3)
 }
 (df$total.score)
 ```
